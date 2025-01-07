@@ -10,3 +10,8 @@ body {
 .sidebar-nav a {
     text-decoration: none;
 }
+
+.link-to-page {
+    float: right;
+    margin: 0 20px;
+}

@@ -1,16 +1,21 @@
-from django.urls import path, include
+from django.urls import path
 
 from manager.views import (
     index,
     ProjectListView,
     TeamListView,
     PositionListView, WorkerListView, PositionDetailView, ProjectDetailView, TeamDetailView, WorkerDetailView,
+    ProjectCreateView, ProjectUpdateView, ProjectDeleteView,
 )
 
 urlpatterns = [
     path("", index, name="index"),
+    path("", ProjectListView.as_view(), name="projects"),
     path("projects/", ProjectListView.as_view(), name="project-list"),
     path("projects/<int:pk>/", ProjectDetailView.as_view(), name="project-detail"),
+    path("projects/create/", ProjectCreateView.as_view(), name="project-create"),
+    path("projects/<int:pk>/update", ProjectUpdateView.as_view(), name="project-update"),
+    path("projects/<int:pk>/delete", ProjectDeleteView.as_view(), name="project-delete"),
     path("teams/", TeamListView.as_view(), name="team-list"),
     path("teams/<int:pk>/", TeamDetailView.as_view(), name="team-detail"),
     path("positions/", PositionListView.as_view(), name="position-list"),

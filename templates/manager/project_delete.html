@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Deleting a <strong>{{ project.name }}</strong></h1>
+  <p><strong>WARNING! </strong>You're going to delete the project "{{ project.name }}".</p>
+  <p><i>If you're really sure to delete this project from the list - press "Delete" button</i></p>
+  <form action="{% url 'manager:project-delete' pk=project.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+  </form>
+{% endblock %}

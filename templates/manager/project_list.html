@@ -3,10 +3,11 @@
 {% block content %}
   <h1>
     List of Projects
-    <a href="" class="btn btn-info">
-      <strong>
-        +
-      </strong>
+    <a
+        href="{% url 'manager:project-create' %}"
+        style="float: right; margin: 0"
+        class="btn btn-success">
+      Create a new Project
     </a>
   </h1>
   <table class="table table-bordered">

@@ -3,8 +3,10 @@ from msilib.schema import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
+from manager.forms import ProjectCreateUpdateForm
 from manager.models import Project, Team, Worker, Position
 
 
@@ -59,7 +61,22 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
 
 class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
     model = Project
-    template_name = "manager/project_create.html"
+    form_class = ProjectCreateUpdateForm
+    template_name = "manager/project_createupdate_form.html"
+    success_url = reverse_lazy("manager:project-list")
+
+
+class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Project
+    form_class = ProjectCreateUpdateForm
+    template_name = "manager/project_createupdate_form.html"
+    success_url = reverse_lazy("manager:project-list")
+
+
+class ProjectDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Project
+    template_name = "manager/project_delete.html"
+    success_url = reverse_lazy("manager:project-list")
 
 
 class TeamListView(LoginRequiredMixin, generic.ListView):
