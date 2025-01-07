@@ -1,0 +1,12 @@
+body {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.sidebar-nav {
+    list-style: none;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+}

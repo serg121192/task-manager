@@ -1,0 +1,29 @@
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <p>
+      Hello, <strong>{{ user.username }}</strong>!
+    </p>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Logout" class="btn btn-danger">
+    </form>
+  {% else %}
+    <p>
+      Hello, <strong>Unknown_user</strong>!
+    </p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+  {% endif %}
+  <hr>
+  <li class="list-group-item">
+    <a href="{% url 'manager:project-list' %}">All projects</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:team-list' %}">All teams</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:worker-list' %}">All employees</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:position-list' %}">All working positions</a>
+  </li>
+</ul>

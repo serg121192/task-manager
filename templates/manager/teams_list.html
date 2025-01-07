@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>List of all Developers Teams:</h1>
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><strong>ID</strong></th>
+        <th><strong>Team name</strong></th>
+        <th><strong>Number of Workers</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for team in teams %}
+        <tr>
+          <td>{{ team.id }}</td>
+          <td>
+            <a href="{% url 'manager:team-detail' pk=team.id %}">{{ team.name }}</a>
+          </td>
+          <td>
+            {{ team.workers.count }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

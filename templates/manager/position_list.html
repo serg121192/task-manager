@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>List of all actual working positions:</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>
+          <strong>
+            ID
+          </strong>
+        </th>
+        <th>
+          <strong>
+            Position name
+          </strong>
+        </th>
+        <th>
+          <strong>
+            Number of position workers
+          </strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for position in positions %}
+        <tr>
+          <td>
+            {{ position.id }}
+          </td>
+          <td>
+            <a
+                href="{% url 'manager:position-detail' pk=position.id %}"
+            >{{ position.name }}</a>
+          </td>
+          <td>
+            {{ position.workers.count }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

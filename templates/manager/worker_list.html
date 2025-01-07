@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Actual list of Employees:</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th><strong>ID</strong></th>
+        <th><strong>Username</strong></th>
+        <th><strong>First name</strong></th>
+        <th><strong>Last name</strong></th>
+        <th><strong>Position</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for worker in workers %}
+        <tr>
+          <td>{{ worker.id }}</td>
+          <td>
+            <a
+                href="{% url 'manager:worker-detail' pk=worker.id %}"
+            >{{ worker.username }}</a>
+          </td>
+          <td>{{ worker.first_name }}</td>
+          <td>{{ worker.last_name }}</td>
+          <td>{{ worker.position }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

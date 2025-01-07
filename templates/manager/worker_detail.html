@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Info about {{ worker.username }}</h1>
+  <hr>
+  <p><strong>First name: </strong>{{ worker.first_name }}</p>
+  <p><strong>Last name: </strong>{{ worker.last_name }}</p>
+  <p><strong>E-mail: </strong>{{ worker.email }}</p>
+  <hr>
+  <h4>Worker's projects:</h4>
+  <ul>
+    {% for team in worker.teams.all %}
+      {% for project in team.projects.all %}
+        <li>
+          <strong>
+            <a href="{% url 'manager:project-detail' pk=project.id %}"
+            >{{ project.name }}:</a>
+          </strong> {{ project.description }}</li>
+      {% endfor %}
+    {% endfor %}
+  </ul>
+  <hr>
+  <h4>Worker's Teams</h4>
+  <ul>
+    {% for team in worker.teams.all %}
+      <li>{{ team.name }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

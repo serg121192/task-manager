@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>About project "{{ project.name }}"</h1>
+  <hr>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th>Project Teams</th>
+        <th>Project Tasks</th>
+        <th>Project Workers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ project.description }}</td>
+        <td>
+          {% for team in project.teams.all %}
+            {{ team.name }}
+          {% endfor %}
+        </td>
+        <td>
+          <ul>
+            {% for task in project.tasks.all %}
+              <li>
+                <a href="#">{{ task.name }}</a>
+              </li>
+           {% endfor %}
+          </ul>
+        </td>
+        <td>
+          <ul>
+            {% for team in project.teams.all %}
+              {% for worker in team.workers.all%}
+                <li>
+                  <a href="#">{{ worker.username }}</a>
+                  {% if worker.team or worker.position %}
+                    (
+                    {% if worker.team %}
+                      {{ worker.team }}
+                    {% endif %}
+                    {% if worker.position %}
+                      {{ worker.position }}
+                    {% endif %}
+                    )
+                  {% endif %}
+                </li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}
