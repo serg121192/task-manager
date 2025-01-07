@@ -36,6 +36,7 @@ class ProjectListView(LoginRequiredMixin, generic.ListView):
     model = Project
     context_object_name = "projects"
     template_name = "manager/project_list.html"
+    paginate_by = 5
 
 
 class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
@@ -56,10 +57,16 @@ class ProjectDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class ProjectCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Project
+    template_name = "manager/project_create.html"
+
+
 class TeamListView(LoginRequiredMixin, generic.ListView):
     model = Team
     context_object_name = "teams"
     template_name = "manager/teams_list.html"
+    paginate_by = 5
 
 
 class TeamDetailView(LoginRequiredMixin, generic.DetailView):
@@ -79,6 +86,7 @@ class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "positions"
     template_name = "manager/position_list.html"
+    paginate_by = 10
 
 
 class PositionDetailView(LoginRequiredMixin, generic.DetailView):
@@ -99,6 +107,7 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     context_object_name = "workers"
     template_name = "manager/worker_list.html"
     queryset = Worker.objects.select_related("position")
+    paginate_by = 10
 
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
