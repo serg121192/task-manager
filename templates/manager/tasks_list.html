@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Tasks List</h1>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Task ID</th>
+        <th>Task name</th>
+        <th>Description</th>
+        <th>Task type</th>
+        <th>Teams with task</th>
+        <th>Workers with task</th>
+        <th>Task priority</th>
+        <th>Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+        <tr>
+          <td>{{ task.id }}</td>
+          <td>
+            <a
+                href="{% url 'manager:task-update' pk=task.id %}"
+            >
+              {{ task.name }}
+            </a>
+          </td>
+          <td>{{ task.description }}</td>
+          <td>{{ task.task_type }}</td>
+          <td>{{ task.teams }}</td>
+          <td>{{ task.workers }}</td>
+          <td>{{ task.priority }}</td>
+          <td>{{ task.deadline }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <hr>
+  <a
+      href="{% url 'manager:task-create' %}"
+      class="btn btn-success"
+  >
+    Add new Task
+  </a>
+{% endblock %}

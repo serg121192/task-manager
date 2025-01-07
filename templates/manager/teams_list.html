@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>List of all Developers Teams:</h1>
+  <h1>
+    List of all Developers Teams:
+    <a
+        href="{% url 'manager:team-create' %}"
+        style="float: right; margin: 0;"
+        class="btn btn-success"
+    >
+      Create a new Team
+    </a>
+  </h1>
   <hr>
   <table class="table table-bordered">
     <thead>

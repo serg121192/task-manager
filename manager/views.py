@@ -1,13 +1,11 @@
-from msilib.schema import ListView
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
-from manager.forms import ProjectCreateUpdateForm
-from manager.models import Project, Team, Worker, Position
+from manager.forms import ProjectCreateUpdateForm, TeamCreateUpdateForm, TaskCreateUpdateForm
+from manager.models import Project, Team, Worker, Position, Task
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -99,6 +97,26 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class TeamCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Team
+    form_class = TeamCreateUpdateForm
+    template_name = "manager/team_createupdate_form.html"
+    success_url = reverse_lazy("manager:team-list")
+
+
+class TeamUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Team
+    form_class = TeamCreateUpdateForm
+    success_url = reverse_lazy("manager:team-list")
+    template_name = "manager/team_createupdate_form.html"
+
+
+class TeamDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Team
+    success_url = reverse_lazy("manager:team-list")
+    template_name = "manager/team_delete.html"
+
+
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
     context_object_name = "positions"
@@ -143,3 +161,42 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         context["worker_projects"] = list(projects)
 
         return context
+
+
+class TaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    context_object_name = "tasks"
+    template_name = "manager/tasks_list.html"
+    queryset = Task.objects.select_related("task_type")
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tasks = self.get_queryset()
+
+        workers = set()
+        teams = set()
+
+        for task in tasks:
+            workers.update(task.assignees.values_list("username", flat=True))
+            for project in task.projects.all():
+                teams.update(project.teams.values_list("name", flat=True))
+
+        context["task_teams"] = list(teams)
+        context["task_workers"] = list(workers)
+
+        return context
+
+
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskCreateUpdateForm
+    success_url = reverse_lazy("manager:task-list")
+    template_name = "manager/task_createupdate_form.html"
+
+
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    form_class = TaskCreateUpdateForm
+    success_url = reverse_lazy("manager:task-list")
+    template_name = "manager/task_createupdate_form.html"

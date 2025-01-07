@@ -1,7 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Info about "{{ team.name }}"</h1>
+  <h1>
+    Info about "{{ team.name }}"
+    <a
+        href="{% url 'manager:team-update' pk=team.id %}"
+        style="float: right; margin: 0;"
+        class="btn btn-info"
+    >
+      Edit
+    </a>
+  </h1>
   <hr>
   <h5>Description:</h5>
   <p>{{ team.description }}</p>
@@ -23,4 +32,12 @@
       </li>
     {% endfor %}
   </ul>
+  <hr>
+  <a
+      href="{% url 'manager:team-delete' pk=team.id %}"
+      style="float: right; margin: 0;"
+      class="btn btn-danger"
+  >
+    Delete
+  </a>
 {% endblock %}

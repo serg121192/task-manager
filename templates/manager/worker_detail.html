@@ -26,4 +26,32 @@
       <li>{{ team.name }}</li>
     {% endfor %}
   </ul>
+  <h4>Actual Tasks</h4>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Resolved Tasks</th>
+        <th>Unresolved Tasks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        {% for task in worker.tasks.all %}
+          {% if task.is_completed %}
+            <td>
+              {{ task.name }}
+            </td>
+            <td></td>
+          {% else %}
+            <td></td>
+            <td>
+              {{ task.name }}
+            </td>
+          {% endif %}
+        {% endfor %}
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <a href="#" class="btn btn-success">Add new Task</a>
 {% endblock %}
