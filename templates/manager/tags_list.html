@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <h1>
+    Tags
+    <a
+        href="{% url 'manager:tag-create' %}"
+        class="btn btn-success link-to-page"
+    >
+      Add new Tag
+    </a>
+  </h1>
+  <br>
+  {% if tags %}
+    <form action="" method="get">
+      {{ search_form|crispy }}
+      <input
+          type="submit"
+          value="Search"
+          class="btn btn-secondary"
+      >
+    </form>
+    <hr>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Tag name</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tag in tags %}
+          <tr>
+          <td>{{ tag.name }}</td>
+          <td>
+            <a
+                href="{% url 'manager:tag-update' pk=tag.id %}"
+                class="btn btn-info"
+            >
+              Update
+            </a>
+          </td>
+          <td>
+            <a
+                href="{% url 'manager:tag-delete' pk=tag.id %}"
+                class="btn btn-danger"
+            >
+              Delete
+            </a>
+          </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There is no one tag exists! Add at least one.</p>
+  {% endif %}
+{% endblock %}

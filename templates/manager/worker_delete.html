@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Worker Deleting</h1>
+  <p><strong>WARNING!</strong>You're going to delete worker - {{ worker.username }}
+    {% if worker.first_name and worker.last_name %}
+      (
+        {{ worker.first_name }} {{ worker.last_name }}
+      )
+    {% endif %}
+  </p>
+  <p><i>If you're really sure want to delete this worker from company, please press "Delete" button below.</i></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input
+        type="submit"
+        value="Delete"
+        class="btn btn-danger"
+    >
+  </form>
+{% endblock %}

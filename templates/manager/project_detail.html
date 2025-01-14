@@ -5,65 +5,71 @@
     About project "{{ project.name }}"
     <a
         href="{% url 'manager:project-update' pk=project.id %}"
-        style="float: right; margin: 0;"
-        class="btn btn-success"
+        class="btn btn-success link-to-page"
     >
       Edit
     </a>
   </h1>
   <hr>
+  {% if project.description %}
+    <h4>Description:</h4>
+    <p>
+      {{ project.description }}
+    </p>
+  {% endif %}
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Description</th>
         <th>Project Teams</th>
         <th>Project Tasks</th>
-        <th>Project Workers</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>{{ project.description }}</td>
         <td>
-          {% for team in project.teams.all %}
-            <a href="#">{{ team.name }}</a>
-          {% endfor %}
-        </td>
-        <td>
-          <ul>
-            {% for task in project.tasks.all %}
-              <li>
-                <a href="#">{{ task.name }}</a>
-              </li>
-           {% endfor %}
-          </ul>
-        </td>
-        <td>
-          <ul>
-            {% for team in project.teams.all %}
-              {% for worker in team.workers.all %}
+          {% if project.teams.all %}
+            <ol>
+              {% for team in project.teams.all %}
                 <li>
-                  <a href="#">{{ worker.username }}</a>
-                  {% if worker.position %}
-                    (
-                    {% if team %}
-                      <strong>{{ team.name }}: </strong>
-                    {% else %}
-                      <p>Worker is out of team!</p>
-                    {% endif %}
-                    {% if worker.position %}
-                      {{ worker.position }}
-                    {% endif %}
-                    )
-                  {% endif %}
+                  <a
+                      href="{% url 'manager:team-detail' pk=team.id %}"
+                      class="text-decoration-none"
+                  >
+                    {{ team.name }}
+                  </a>
                 </li>
               {% endfor %}
-            {% endfor %}
-          </ul>
+            </ol>
+          {% else %}
+            <p>There are no assigned teams.</p>
+          {% endif %}
+        </td>
+        <td>
+          {% if project.tasks.all %}
+            <ol>
+              {% for task in project.tasks.all %}
+                <li>
+                  <a
+                      href="{% url 'manager:task-detail' pk=task.id %}"
+                      class="text-decoration-none"
+                  >
+                    {{ task.name }}
+                  </a>
+                </li>
+             {% endfor %}
+            </ol>
+          {% else %}
+            <p>There are no assigned tasks.</p>
+          {% endif %}
         </td>
       </tr>
     </tbody>
   </table>
   <hr>
-  <a href="{% url 'manager:project-delete' pk=project.id %}" class="btn btn-danger">Delete</a>
+  <a
+      href="{% url 'manager:project-delete' pk=project.id %}"
+      class="btn btn-danger"
+  >
+    Delete
+  </a>
 {% endblock %}

@@ -2,15 +2,16 @@
 {% load crispy_forms_filters %}
 {% block content %}
   <h1>
-    List of all Developers Teams:
+    Task Types
     <a
-        href="{% url 'manager:team-create' %}"
+        href="{% url 'manager:task-type-create' %}"
         class="btn btn-success link-to-page"
     >
-      Create a new Team
+      Add new Type
     </a>
   </h1>
-  {% if teams %}
+  <br>
+  {% if task_types %}
     <form action="" method="get">
       {{ search_form|crispy }}
       <input
@@ -19,37 +20,41 @@
           class="btn btn-secondary"
       >
     </form>
-  {% endif %}
-  <hr>
-  {% if teams %}
+    <hr>
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Team name</th>
-          <th>Number of Workers</th>
+          <th>Type name</th>
+          <th>Update</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        {% for team in teams %}
+        {% for type in task_types %}
           <tr>
-            <td>{{ team.id }}</td>
+            <td>{{ type.name }}</td>
             <td>
               <a
-                  href="{% url 'manager:team-detail' pk=team.id %}"
-                  class="text-decoration-none"
+                  href="{% url 'manager:task-type-update' pk=type.id %}"
+                  class="btn btn-info"
               >
-                {{ team.name }}
+                Update
               </a>
             </td>
             <td>
-              {{ team.workers.count }}
+              <a
+                  href="{% url 'manager:task-type-delete' pk=type.id%}"
+                  class="btn btn-danger"
+              >
+                Delete
+              </a>
             </td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
+    <hr>
   {% else %}
-    <p>There are still no teams created!</p>
+    <p>There are still no task types created!</p>
   {% endif %}
 {% endblock %}

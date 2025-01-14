@@ -1,57 +1,117 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Info about {{ worker.username }}</h1>
+  <h1>
+    Info about {{ worker.username }}
+    <a
+        href="{% url 'manager:worker-update' pk=worker.id %}"
+        class="btn btn-info link-to-page"
+    >
+      Edit
+    </a>
+  </h1>
   <hr>
   <p><strong>First name: </strong>{{ worker.first_name }}</p>
   <p><strong>Last name: </strong>{{ worker.last_name }}</p>
   <p><strong>E-mail: </strong>{{ worker.email }}</p>
   <hr>
   <h4>Worker's projects:</h4>
-  <ul>
-    {% for team in worker.teams.all %}
-      {% for project in team.projects.all %}
+  {% if unique_projects %}
+    <ul>
+      {% for project in unique_projects %}
         <li>
-          <strong>
-            <a href="{% url 'manager:project-detail' pk=project.id %}"
-            >{{ project.name }}:</a>
-          </strong> {{ project.description }}</li>
+            <a
+                href="{% url 'manager:project-detail' pk=project.id %}"
+                class="text-decoration-none"
+            >
+              {{ project.name }}:
+            </a>
+            {{ project.description }}
+        </li>
       {% endfor %}
-    {% endfor %}
-  </ul>
+    </ul>
+  {% else %}
+    <p>There are no actual projects the worker assigned in.</p>
+  {% endif %}
   <hr>
   <h4>Worker's Teams:</h4>
-  <ul>
-    {% for team in worker.teams.all %}
-      <li>{{ team.name }}</li>
-    {% endfor %}
-  </ul>
+  {% if worker.teams.all %}
+    <ul>
+      {% for team in worker.teams.all %}
+        <li>{{ team.name }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no teams worker assigned in.</p>
+  {% endif %}
   <h4>Actual Tasks</h4>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Resolved Tasks</th>
-        <th>Unresolved Tasks</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        {% for task in worker.tasks.all %}
-          {% if task.is_completed %}
-            <td>
-              {{ task.name }}
-            </td>
-            <td></td>
-          {% else %}
-            <td></td>
-            <td>
-              {{ task.name }}
-            </td>
-          {% endif %}
-        {% endfor %}
-      </tr>
-    </tbody>
-  </table>
+  {% if worker.tasks.all %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Resolved Tasks</th>
+          <th>Unresolved Tasks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            {% if worker.tasks.all.is_completed %}
+              <ul>
+                {% for task in worker.tasks.all %}
+                  {% if task.is_completed %}
+                    <li>
+                      <a href="{% url 'manager:task-detail' pk=task.id %}"
+                         class="text-decoration-none"
+                      >
+                        {{ task.name }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>There are no resolved tasks.</p>
+            {% endif %}
+          </td>
+          <td>
+            {% if not worker.tasks.all.is_completed %}
+              <ul>
+                {% for task in worker.tasks.all %}
+                  {% if not task.is_completed %}
+                    <li>
+                      <a href="{% url 'manager:task-detail' pk=task.id %}"
+                         class="text-decoration-none"
+                      >
+                        {{ task.name }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>There are no unresolved tasks.</p>
+            {% endif %}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are no tasks assigned to this worker.</p>
+  {% endif %}
   <hr>
-  <a href="#" class="btn btn-success">Add new Task</a>
+  <a
+      href="{% url 'manager:worker-assign-task' pk=worker.id%}"
+      class="btn btn-success"
+  >
+    Add new Task
+  </a>
+  {% if user.username == worker.username %}
+    <a
+        href="{% url 'manager:worker-change-password' pk=worker.id %}"
+        class="btn btn-info link-to-page"
+    >
+      Change password
+    </a>
+  {% endif %}
 {% endblock %}

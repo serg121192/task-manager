@@ -12,21 +12,32 @@
       Hello, <strong>Unknown_user</strong>!
     </p>
     <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    <br>
+    <a href="{% url 'manager:signup-worker' %}" class="btn btn-info">Sign Up</a>
   {% endif %}
   <hr>
   <li class="list-group-item">
-    <a href="{% url 'manager:project-list' %}">All projects</a>
+    <a href="{% url 'index' %}">Home</a>
   </li>
   <li class="list-group-item">
-    <a href="{% url 'manager:team-list' %}">All teams</a>
+    <a href="{% url 'manager:project-list' %}">Projects</a>
   </li>
   <li class="list-group-item">
-    <a href="{% url 'manager:worker-list' %}">All employees</a>
+    <a href="{% url 'manager:team-list' %}">Teams</a>
   </li>
   <li class="list-group-item">
-    <a href="{% url 'manager:position-list' %}">All working positions</a>
+    <a href="{% url 'manager:worker-list' %}">Employees</a>
   </li>
   <li class="list-group-item">
-    <a href="{% url 'manager:task-list' %}">Tasks List</a>
+    <a href="{% url 'manager:position-list' %}">Positions</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:task-list' %}">Tasks</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:task-type-list' %}">Task types</a>
+  </li>
+  <li class="list-group-item">
+    <a href="{% url 'manager:tag-list' %}">Tags</a>
   </li>
 </ul>

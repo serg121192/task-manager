@@ -1,51 +1,62 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>About position "{{ position.name }}"</h2>
-  <hr>
-  <h3>A few words about:</h3>
-  {% if position.name == "Designer" %}
-    <p>
-      Designers create a landing templates of website pages. They work with HTML, CSS and JavaScript.<br>
-      These instruments are called to make a website pages more user-friendly and interactive.
-    </p>
-  {% elif position.name == "DevOps" %}
-    <p>
-      DevOps are the specialists which set up and configure the working spaces for other developers.<br>
-      Theirs the main and most powerful weapons - Cloud techs and virtualization.
-    </p>
-  {% elif position.name == "Developer" %}
-    <p>
-      Developers work with front-end and back-end tools.<br>
-      These instruments are called to make a website pages more user-friendly and interactive.
-    </p>
-  {% elif position.name == "Project Manager" %}
-    <p>
-      Project Managers are the head in each project. They delegate tasks to teams.
-    </p>
-  {% elif position.name == "QA" %}
-    <p>
-      QAs or Testers make a tests for different parts of projects.
-    </p>
-  {% endif %}
+  <h1>
+    About position "{{ position.name }}"
+    <a
+        href="{% url 'manager:position-update' pk=position.id %}"
+        class="btn btn-info link-to-page"
+    >
+      Edit
+    </a>
+  </h1>
     <hr>
     {% if position.name != "DevOps" %}
       <h4>Our Company {{ position.name }}s:</h4>
       {% if position.workers.all %}
-      {% for worker in position.workers.all %}
-        {{ worker.id }}. {{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})
-      {% endfor %}
+        <ol>
+          {% for worker in position.workers.all %}
+            {% if worker.first_name and worker.last_name %}
+              <li>
+                {{ worker.username }}
+                ({{ worker.first_name }} {{ worker.last_name }})
+              </li>
+            {% else %}
+              <li>
+                {{ worker.username }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ol>
       {% else %}
         There are no represented {{ position.name }}s in Company!
       {% endif %}
     {% else %}
         <h4>Our Company {{ position.name }}:</h4>
       {% if position.workers.all %}
-      {% for worker in position.workers.all %}
-        {{ worker.id }}. {{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})
-      {% endfor %}
+        <ol>
+          {% for worker in position.workers.all %}
+            {% if worker.first_name and worker.last_name %}
+              <li>
+                {{ worker.username }}
+                ({{ worker.first_name }} {{ worker.last_name }})
+              </li>
+            {% else %}
+              <li>
+                {{ worker.username }}
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ol>
       {% else %}
         There are no represented {{ position.name }} in Company!
       {% endif %}
     {% endif %}
+  <hr>
+  <a
+      href="{% url 'manager:position-delete' pk=position.id %}"
+      class="btn btn-danger link-to-page"
+  >
+    Delete
+  </a>
 {% endblock %}

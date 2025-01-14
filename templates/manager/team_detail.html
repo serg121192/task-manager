@@ -5,8 +5,7 @@
     Info about "{{ team.name }}"
     <a
         href="{% url 'manager:team-update' pk=team.id %}"
-        style="float: right; margin: 0;"
-        class="btn btn-info"
+        class="btn btn-info link-to-page"
     >
       Edit
     </a>
@@ -15,28 +14,36 @@
   <h5>Description:</h5>
   <p>{{ team.description }}</p>
   <h5>Team Members:</h5>
-  <ul>
-    {% for worker in team.workers.all %}
-      <li>
-        {{ worker.username }}
-        {% if worker.first_name or worker.last_name or worker.position %}
-          (
-          {% if worker.first_name and worker_last_name %}
-            {{ worker.first_name }} {{ worker.last_name }},
-          {% endif %}
+  {% if team.workers.all %}
+    <ul class="list-inline">
+      {% for worker in team.workers.all %}
+        <li>
+          <a
+              href="{% url 'manager:worker-detail' pk=worker.id %}"
+              class="text-decoration-none"
+          >
+            {{ worker.username }}
+          </a>
           {% if worker.position %}
-            {{ worker.position }}
+            (
+            {% if worker.first_name and worker.last_name %}
+              {{ worker.first_name }} {{ worker.last_name }}
+            {% endif %}
+            {% if worker.position %}
+              , {{ worker.position }}
+            {% endif %}
+            )
           {% endif %}
-          )
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no workers assigned to this team.</p>
+  {% endif %}
   <hr>
   <a
       href="{% url 'manager:team-delete' pk=team.id %}"
-      style="float: right; margin: 0;"
-      class="btn btn-danger"
+      class="btn btn-danger link-to-page"
   >
     Delete
   </a>

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{%  block content %}
+  <h1>Position Deleting</h1>
+  <p><strong>WARNING!</strong> You're going to delete position - {{ position.name }}!</p>
+  <p><i>If you're really sure to delete this position, please press "Delete" button below.</i></p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+  </form>
+{% endblock %}

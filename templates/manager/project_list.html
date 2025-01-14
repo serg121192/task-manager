@@ -1,37 +1,57 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_filters %}
 {% block content %}
   <h1>
     List of Projects
     <a
         href="{% url 'manager:project-create' %}"
-        style="float: right; margin: 0"
-        class="btn btn-success">
+        class="btn btn-success link-to-page">
       Create a new Project
     </a>
   </h1>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th><strong>ID</strong></th>
-        <th><strong>Project Name</strong></th>
-        <th><strong>Names of project teams</strong></th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for project in projects %}
+  <hr>
+  {% if projects %}
+    <form action="" method="get">
+      {{ search_form|crispy }}
+      <input
+          type="submit"
+          value="Search"
+          class="btn btn-secondary"
+      >
+    </form>
+    <br>
+    <table class="table table-bordered">
+      <thead>
         <tr>
-          <td>{{ project.id }}</td>
-          <td>
-            <a href="{% url 'manager:project-detail' pk=project.id %}">{{ project.name }}</a>
-          </td>
-          <td>
-            {% for team in project.teams.all %}
-              {{ team.name }} (Workers: {{team.workers.count }})
-            {% endfor %}
-          </td>
+          <th>ID</th>
+          <th>Project Name</th>
+          <th>Names of project teams</th>
         </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        {% for project in projects %}
+          <tr>
+            <td>{{ project.id }}</td>
+            <td>
+              <a
+                  href="{% url 'manager:project-detail' pk=project.id %}"
+                  class="text-decoration-none"
+              >
+                {{ project.name }}
+              </a>
+            </td>
+            <td>
+              <ol>
+                {% for team in project.teams.all %}
+                  <li>{{ team.name }} (Workers: {{team.workers.count }})</li>
+                {% endfor %}
+              </ol>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are still no projects!</p>
+  {% endif %}
 {% endblock %}

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-  <h1>{{ object|yesno:"Update,Create" }} a Task</h1>
+  <h1>{{ object|yesno:"Update,Create" }} Worker</h1>
   <form action="" method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <input
         type="submit"
-        value="{{ object|yesno:"Update,Create" }}"
+        value="{{ object|yesno:'Update,Create' }}"
         class="btn btn-success"
     >
   </form>

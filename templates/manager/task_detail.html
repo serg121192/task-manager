@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ task.name }}
+    <a href="{% url 'manager:task-update' pk=task.id %}"
+       class="btn btn-info link-to-page"
+    >
+      Edit
+    </a>
+  </h1>
+  <hr>
+  <ul>
+    <li>
+      <strong>
+        Description:
+      </strong>
+      {{ task.description }}
+    </li>
+    <li>
+      <strong>
+        Task priority:
+      </strong>
+      {{ task.priority }}
+    </li>
+    <li>
+      <strong>
+        Task type:
+      </strong>
+        {{ task.task_type }}
+    </li>
+    <li>
+      <strong>
+        Task deadline:
+      </strong>
+        {{ task.deadline|date:"d M Y H:i" }}
+    </li>
+  </ul>
+  <hr>
+  <h4>
+    Workers with Task
+    <a
+      href="{% url 'manager:assign-workers-task' pk=task.id %}"
+      class="btn btn-success link-to-page"
+    >
+      Assign workers to Task
+    </a>
+  </h4>
+  <br>
+  {% if task.assignees.all %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Worker ID</th>
+          <th>Username</th>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Task status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for worker in task.assignees.all %}
+          <tr>
+            <td>{{ worker.id }}</td>
+            <td>{{ worker.username }}</td>
+            <td>{{ worker.first_name }}</td>
+            <td>{{ worker.last_name }}</td>
+            <td>
+              {% if task.is_completed %}
+                Resolved
+              {% else %}
+                Not Resolved
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are no assigned workers.</p>
+  {% endif %}
+  <hr>
+  <h4>
+    Teams with Task
+    <a
+      href="{% url 'manager:assign-teams-task' pk=task.id %}"
+      class="btn btn-success link-to-page"
+    >
+      Assign teams to Task
+    </a>
+  </h4>
+  <br>
+  {% if task.teams.all %}
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Team ID</th>
+          <th>Team name</th>
+          <th>Team Workers</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for team in task.teams.all %}
+          <tr>
+            <td>{{ team.id }}</td>
+            <td>{{ team.name }}</td>
+            <td>
+              <ol>
+                {% for worker in team.workers.all %}
+                  <li>{{ worker.username }}</li>
+                {% endfor %}
+              </ol>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>There are no assigned teams.</p>
+  {% endif %}
+{% endblock %}
