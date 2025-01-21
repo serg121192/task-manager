@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    About project "{{ project.name }}"
+  <div
+      class="d-flex justify-content-between align-items-center mb-2 w-100"
+  >
+    <h1 class="text-white">
+      About project "{{ project.name }}"
+    </h1>
     <a
         href="{% url 'manager:project-update' pk=project.id %}"
         class="btn btn-success link-to-page"
     >
       Edit
     </a>
-  </h1>
-  <hr>
+  </div>
+  <hr class="text-white">
   {% if project.description %}
-    <h4>Description:</h4>
-    <p>
+    <h4 class="text-white">Description:</h4>
+    <p class="text-white">
       {{ project.description }}
     </p>
   {% endif %}
-  <table class="table table-bordered">
+  <table class="table table-bordered text-start bg-white">
     <thead>
       <tr>
         <th>Project Teams</th>
@@ -65,7 +69,7 @@
       </tr>
     </tbody>
   </table>
-  <hr>
+  <hr class="text-white">
   <a
       href="{% url 'manager:project-delete' pk=project.id %}"
       class="btn btn-danger"

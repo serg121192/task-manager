@@ -1,23 +1,102 @@
-{% extends "base.html" %}
+{% extends "base_2.html" %}
 
 {% block content %}
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-9 align-center">
-        <h1>Welcome to the Project Task Manager!</h1>
-        <br>
-        <h2>Some information about our company</h2>
-        <ul>
-          <li>Number of our projects: {{ number_of_projects }}</li>
-          <li>Number of our developers teams: {{ number_of_teams }}</li>
-          <li>Number of our employees: {{ number_of_employees }}</li>
-          <li>Represented staff positions: {{ number_of_positions }}</li>
-        </ul>
-        <hr>
-        <p>
-          You have visited us {{ num_visits }} time{{ num_visits|pluralize }}
-        </p>
+  <header class="header-2">
+      <div
+          class="page-header min-vh-65 relative"
+          style="background-image: url('{{ ASSETS_ROOT }}/img/bg2.jpg')"
+      >
+        <span class="mask bg-gradient-primary opacity-0"></span>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-7 text-center mx-auto">
+              <h1 class="text-white pt-3 mt-n5">Welcome to Task Manager</h1>
+              <p class="lead text-white mt-3">
+                Here you can create your own projects,<br>
+                teams, tasks, workers, etc.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </header>
+  <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
+    <section class="pt-3 pb-4" id="count-stats">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mx-auto py-3">
+            <div class="row">
+              <div class="col-md-4 position-relative">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state1">
+                      {{ number_of_projects }}
+                    </span>
+                  </h1>
+                  <h5 class="mt-3">Number of Projects</h5>
+                  <p class="text-sm font-weight-normal">
+                    Project we're realized or in progress
+                  </p>
+                </div>
+                <hr class="vertical dark">
+              </div>
+              <div class="col-md-4 position-relative">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state2">
+                      {{ number_of_teams }}
+                    </span>
+                  </h1>
+                  <h5 class="mt-3">Number of Teams</h5>
+                  <p class="text-sm font-weight-normal">
+                    Teams which work with actual projects
+                  </p>
+                </div>
+                <hr class="vertical dark">
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state3">
+                      {{ number_of_employees }}
+                    </span>
+                  </h1>
+                  <h5 class="mt-3">Number of Employees</h5>
+                  <p class="text-sm font-weight-normal">
+                    Our powerful employees which work in strong teams with actual and interesting projects
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state4">
+                      {{ number_of_positions }}
+                    </span>
+                  </h1>
+                  <h5 class="mt-3">Number of Positions</h5>
+                  <p class="text-sm font-weight-normal">
+                    Our needed and actual positions
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="p-3 text-center">
+                  <h1 class="text-gradient text-primary">
+                    <span id="state3">
+                      {{ number_of_tasks }}
+                    </span>
+                  </h1>
+                  <h5 class="mt-3">Number of Tasks</h5>
+                  <p class="text-sm font-weight-normal">
+                    Easy and tricky tasks that we are solving every day
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 {% endblock %}

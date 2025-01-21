@@ -1,59 +1,62 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-  <h1>
-    Tags
-    <a
-        href="{% url 'manager:tag-create' %}"
-        class="btn btn-success link-to-page"
-    >
-      Add new Tag
-    </a>
-  </h1>
-  <br>
-  {% if tags %}
-    <form action="" method="get">
-      {{ search_form|crispy }}
-      <input
-          type="submit"
-          value="Search"
-          class="btn btn-secondary"
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-white">
+        Tags
+      </h1>
+      <a
+          href="{% url 'manager:tag-create' %}"
+          class="btn btn-success"
       >
-    </form>
-    <hr>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Tag name</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for tag in tags %}
+        Add new Tag
+      </a>
+    </div>
+    {% if tags %}
+      <form action="" method="get">
+        {{ search_form|crispy }}
+        <input
+            type="submit"
+            value="Search"
+            class="btn btn-info"
+        >
+      </form>
+      <hr class="text-white-50">
+      <table class="table table-bordered text-dark text-start bg-white">
+        <thead>
           <tr>
-          <td>{{ tag.name }}</td>
-          <td>
-            <a
-                href="{% url 'manager:tag-update' pk=tag.id %}"
-                class="btn btn-info"
-            >
-              Update
-            </a>
-          </td>
-          <td>
-            <a
-                href="{% url 'manager:tag-delete' pk=tag.id %}"
-                class="btn btn-danger"
-            >
-              Delete
-            </a>
-          </td>
+            <th>Tag name</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  {% else %}
-    <p>There is no one tag exists! Add at least one.</p>
-  {% endif %}
+        </thead>
+        <tbody>
+          {% for tag in tags %}
+            <tr>
+            <td>{{ tag.name }}</td>
+            <td>
+              <a
+                  href="{% url 'manager:tag-update' pk=tag.id %}"
+                  class="btn btn-info"
+              >
+                Update
+              </a>
+            </td>
+            <td>
+              <a
+                  href="{% url 'manager:tag-delete' pk=tag.id %}"
+                  class="btn btn-danger"
+              >
+                Delete
+              </a>
+            </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="text-white">There is no one tag exists! Add at least one.</p>
+    {% endif %}
+  </div>
 {% endblock %}

@@ -36,9 +36,10 @@ from manager.views import (
     TagUpdateView,
     TagDeleteView,
     AssignWorkersToTaskView,
-    AssignTeamsToTaskView,
     WorkerChangePasswordView,
-    SignUpWorkerView, AssignTaskToWorkerView,
+    SignUpWorkerView,
+    AssignTaskToWorkerView,
+    WorkerTaskCompletionView,
 )
 
 
@@ -67,6 +68,7 @@ urlpatterns = [
     path("workers/<int:pk>/change_password/", WorkerChangePasswordView.as_view(), name="worker-change-password"),
     path("workers/<int:pk>/delete", WorkerDeleteView.as_view(), name="worker-delete"),
     path("workers/<int:pk>/assign_task/", AssignTaskToWorkerView.as_view(), name="worker-assign-task"),
+    path("workers/<int:pk>/task/completion/", WorkerTaskCompletionView.as_view(), name="worker-task-completion"),
     path("setup_worker/", SignUpWorkerView.as_view(), name="signup-worker"),
     path("tasks/", TaskListView.as_view(), name="task-list"),
     path("tasks/<int:pk>/", TaskDetailView.as_view(), name="task-detail"),
@@ -74,7 +76,6 @@ urlpatterns = [
     path("tasks/<int:pk>/update", TaskUpdateView.as_view(), name="task-update"),
     path("tasks/<int:pk>/delete", TaskDeleteView.as_view(), name="task-delete"),
     path("tasks/<int:pk>/assign_worker", AssignWorkersToTaskView.as_view(), name="assign-workers-task"),
-    path("tasks/<int:pk>/assign_teams", AssignTeamsToTaskView.as_view(), name="assign-teams-task"),
     path("task_types/", TaskTypeListView.as_view(), name="task-type-list"),
     path("task_types/create/", TaskTypeCreateView.as_view(), name="task-type-create"),
     path("task_types/<int:pk>/update", TaskTypeUpdateView.as_view(), name="task-type-update"),

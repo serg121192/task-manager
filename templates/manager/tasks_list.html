@@ -1,83 +1,95 @@
 {% extends "base.html" %}
 {% load crispy_forms_filters %}
 {% block content %}
-  <h1>
-    Tasks List
-    <a
-      href="{% url 'manager:task-create' %}"
-      class="btn btn-success link-to-page"
-    >
-      Add new Task
-    </a>
-  </h1>
-  <br>
-  {% if tasks %}
-    <form action="" method="get">
-      {{ search_form|crispy }}
-      <input
-          type="submit"
-          value="Search"
-          class="btn btn-secondary"
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="text-white">
+        Tasks List
+      </h1>
+      <a
+        href="{% url 'manager:task-create' %}"
+        class="btn btn-success"
       >
-    </form>
-  {% endif %}
-  <hr>
-  {% if tasks %}
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Task ID</th>
-          <th>Task name</th>
-          <th>Task type</th>
-          <th>Task tags</th>
-          <th>Task priority</th>
-          <th>Deadline</th>
-          <th>Update</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for task in tasks %}
+        Add new Task
+      </a>
+    </div>
+    {% if tasks %}
+      <form action="" method="get">
+        {{ search_form|crispy }}
+        <input
+            type="submit"
+            value="Search"
+            class="btn btn-info"
+        >
+      </form>
+    {% endif %}
+    <hr class="text-white-50">
+    {% if tasks %}
+      <table class="table table-bordered text-dark text-start bg-white">
+        <thead>
           <tr>
-            <td>{{ task.id }}</td>
-            <td>
-              <a
-                  href="{% url 'manager:task-detail' pk=task.id %}"
-                  class="text-decoration-none"
-              >
-                {{ task.name }}
-              </a>
-            </td>
-            <td>{{ task.task_type }}</td>
-            <td>
-              {% for tag in task.tags.all %}
-                {{ tag.name }}<br>
-              {% endfor %}
-            </td>
-            <td>{{ task.priority }}</td>
-            <td>{{ task.deadline|date:"d M Y H:i" }}</td>
-            <td>
-              <a
-                  href="{% url 'manager:task-update' pk=task.id %}"
-                  class="btn btn-info"
-              >
-                Update
-              </a>
-            </td>
-            <td>
-              <a
-                  href="{% url 'manager:task-delete' pk=task.id %}"
-                  class="btn btn-danger"
-              >
-                Delete
-              </a>
-            </td>
+            <th>Task ID</th>
+            <th>Task name</th>
+            <th>Task type</th>
+            <th>Task tags</th>
+            <th>Task priority</th>
+            <th>Deadline</th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <hr>
-  {% else %}
-    <p>There are still no tasks created!</p>
-  {% endif %}
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+            <tr>
+              <td>{{ task.id }}</td>
+              <td>
+                <a
+                    href="{% url 'manager:task-detail' pk=task.id %}"
+                    class="text-decoration-none"
+                >
+                  {{ task.name }}
+                </a>
+              </td>
+              <td>{{ task.task_type }}</td>
+              <td>
+                {% for tag in task.tags.all %}
+                  {{ tag.name }}<br>
+                {% endfor %}
+              </td>
+              <td>{{ task.priority }}</td>
+              <td>
+                {{ task.deadline|date:"d M Y H:i:s" }}
+                {% if task.deadline|date:"d M Y H:i:s" < today|date:"d M Y H:i:s" %}
+                  <div class="bg-danger text-white text-center">
+                    <p>
+                      Expired
+                    </p>
+                  </div>
+                {% endif %}
+              </td>
+              <td>
+                <a
+                    href="{% url 'manager:task-update' pk=task.id %}"
+                    class="btn btn-info"
+                >
+                  Update
+                </a>
+              </td>
+              <td>
+                <a
+                    href="{% url 'manager:task-delete' pk=task.id %}"
+                    class="btn btn-danger"
+                >
+                  Delete
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <hr class="text-white-50">
+    {% else %}
+      <p class="text-white">There are still no tasks created!</p>
+    {% endif %}
+  </div>
 {% endblock %}

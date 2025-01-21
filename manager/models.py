@@ -161,6 +161,10 @@ class TaskAssignment(models.Model):
             ),
         ]
 
+    def update_completion(self):
+        self.is_completed = True
+        self.save()
+
 
 class Project(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)

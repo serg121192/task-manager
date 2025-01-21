@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.db.models import Case, When, Value, IntegerField
@@ -8,7 +10,6 @@ from django.views import generic
 
 from manager.forms import (
     AssignTaskToWorkerForm,
-    AssignTeamsToTaskForm,
     AssignWorkersToTaskForm,
     PositionCreateUpdateForm,
     ProjectCreateUpdateForm,
@@ -25,6 +26,7 @@ from manager.forms import (
     WorkerPasswordChangeForm,
     WorkerSearchForm,
     WorkerUpdateForm,
+    WorkerTaskCompletionForm,
 )
 
 from manager.models import (
@@ -35,6 +37,7 @@ from manager.models import (
     TaskType,
     Team,
     Worker,
+    TaskAssignment,
 )
 
 
@@ -43,6 +46,7 @@ def index(request: HttpRequest) -> HttpResponse:
     number_of_teams = Team.objects.count()
     number_of_employees = Worker.objects.count()
     number_of_positions = Position.objects.count()
+    number_of_tasks = Task.objects.count()
 
     num_visits = request.session.get("num_visits", 1)
     request.session["num_visits"] = num_visits + 1
@@ -52,6 +56,7 @@ def index(request: HttpRequest) -> HttpResponse:
         "number_of_teams": number_of_teams,
         "number_of_employees": number_of_employees,
         "number_of_positions": number_of_positions,
+        "number_of_tasks": number_of_tasks,
         "num_visits": num_visits,
     }
 
@@ -275,6 +280,7 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         }
         context["worker_teams"] = worker.teams.values_list("name", flat=True)
         context["worker_tasks"] = worker.tasks.values_list("name", flat=True)
+        context["task_assignments"] = TaskAssignment.objects.filter(worker=self.object)
         context["unique_projects"] = unique_projects
 
         return context
@@ -316,6 +322,18 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Worker
     success_url = reverse_lazy("manager:worker-list")
     template_name = "manager/worker_delete.html"
+
+
+class WorkerTaskCompletionView(LoginRequiredMixin, generic.UpdateView):
+    model = TaskAssignment
+    form_class = WorkerTaskCompletionForm
+    template_name = "manager/worker_task_completion.html"
+    success_url = reverse_lazy("manager:worker-list")
+
+    def form_valid(self, form):
+        form.instance.is_completed = True
+        form.save()
+        return redirect(self.success_url)
 
 
 class AssignTaskToWorkerView(LoginRequiredMixin, generic.UpdateView):
@@ -365,6 +383,7 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
                 "name": name,
             }
         )
+        context["today"] = datetime.now()
 
         return context
 
@@ -397,6 +416,8 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
         context = super().get_context_data(**kwargs)
         task = self.get_object()
         context["task_workers"] = task.assignees.values_list("username", flat=True)
+        context["task_assignments"] = TaskAssignment.objects.filter(task=self.object)
+        context["today"] = datetime.now()
 
         return context
 
@@ -425,18 +446,6 @@ class AssignWorkersToTaskView(LoginRequiredMixin, generic.UpdateView):
     model = Task
     form_class = AssignWorkersToTaskForm
     template_name = "manager/assign_worker_to_task.html"
-
-    def get_success_url(self):
-        return reverse_lazy(
-            "manager:task-detail",
-            kwargs={"pk": self.object.pk}
-        )
-
-
-class AssignTeamsToTaskView(LoginRequiredMixin, generic.UpdateView):
-    model = Task
-    form_class = AssignTeamsToTaskForm
-    template_name = "manager/assign_team_to_task.html"
 
     def get_success_url(self):
         return reverse_lazy(

@@ -13,6 +13,7 @@ from manager.models import (
     TaskType,
     Tag,
     Position,
+    TaskAssignment,
 )
 
 
@@ -149,6 +150,17 @@ class AssignTaskToWorkerForm(forms.ModelForm):
         fields = []
 
 
+class WorkerTaskCompletionForm(forms.ModelForm):
+    class Meta:
+        model = TaskAssignment
+        fields = [
+            "is_completed",
+        ]
+        widgets = {
+            "is_completed": forms.CheckboxInput(),
+        }
+
+
 class WorkerSearchForm(forms.Form):
     username = forms.CharField(
         max_length=100,
@@ -218,20 +230,6 @@ class AssignWorkersToTaskForm(forms.ModelForm):
         model = Task
         fields = [
             "assignees",
-        ]
-
-
-class AssignTeamsToTaskForm(forms.ModelForm):
-    teams = forms.ModelMultipleChoiceField(
-        queryset=Team.objects.prefetch_related("tasks"),
-        widget=forms.CheckboxSelectMultiple,
-        required=False,
-    )
-
-    class Meta:
-        model = Task
-        fields = [
-            "teams",
         ]
 
 
