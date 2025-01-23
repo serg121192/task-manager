@@ -42,7 +42,8 @@ class Worker(AbstractUser):
 
     def __str__(self):
         if (self.first_name and self.last_name) and self.position:
-            return f"{self.username} ({self.first_name} {self.last_name}: {self.position})"
+            return (f"{self.username} ({self.first_name} {self.last_name}: "
+                    f"{self.position})")
         elif self.first_name and self.last_name:
             return f"{self.username} ({self.first_name} {self.last_name})"
         elif self.position:
@@ -118,11 +119,6 @@ class Task(models.Model):
         related_name="tasks",
         blank=True,
     )
-    teams = models.ManyToManyField(
-        "Team",
-        related_name="tasks",
-        blank=True,
-    )
 
     class Meta:
         ordering = ("-priority", )
@@ -134,10 +130,7 @@ class Task(models.Model):
         ]
 
     def __str__(self):
-        if self.priority:
-            return f"{self.name} ({self.priority})"
-
-        return self.name
+        return f"{self.name} ({self.priority})"
 
 
 class TaskAssignment(models.Model):

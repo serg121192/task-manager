@@ -17,6 +17,7 @@ class TaskTypeAdmin(admin.ModelAdmin):
     search_fields = ["name", ]
     list_filter = ["name", ]
 
+
 @admin.register(Worker)
 class WorkerAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("position", )
@@ -34,7 +35,8 @@ class WorkerAdmin(UserAdmin):
 
     add_fieldsets = UserAdmin.add_fieldsets + (
         (
-            "Additional info about employee's position, first name and last name",
+            "Additional info about employee's position,"
+            " first name and last name",
             {
                 "fields": (
                     "position",

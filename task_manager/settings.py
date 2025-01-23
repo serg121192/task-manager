@@ -20,7 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-+o0$k(zg0&kq+ufys(87khjccdn3!vk%58bho5gk^5ntu7apmd"
+SECRET_KEY = \
+    "django-insecure-+o0$k(zg0&kq+ufys(87khjccdn3!vk%58bho5gk^5ntu7apmd"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
+    "coverage",
 ]
 
 MIDDLEWARE = [

@@ -169,7 +169,10 @@ class TeamDetailView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(TeamDetailView, self).get_context_data(**kwargs)
         team = self.get_object()
-        context["team_workers"] = team.workers.values_list("username", flat=True)
+        context["team_workers"] = team.workers.values_list(
+            "username",
+            flat=True
+        )
 
         return context
 
@@ -280,7 +283,9 @@ class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
         }
         context["worker_teams"] = worker.teams.values_list("name", flat=True)
         context["worker_tasks"] = worker.tasks.values_list("name", flat=True)
-        context["task_assignments"] = TaskAssignment.objects.filter(worker=self.object)
+        context["task_assignments"] = TaskAssignment.objects.filter(
+            worker=self.object
+        )
         context["unique_projects"] = unique_projects
 
         return context
@@ -353,7 +358,7 @@ class SignUpWorkerView(generic.CreateView):
     model = Worker
     form_class = WorkerCreateForm
     success_url = reverse_lazy("login")
-    template_name="manager/worker_create_update_form.html"
+    template_name = "manager/worker_create_update_form.html"
 
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
@@ -415,8 +420,13 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         task = self.get_object()
-        context["task_workers"] = task.assignees.values_list("username", flat=True)
-        context["task_assignments"] = TaskAssignment.objects.filter(task=self.object)
+        context["task_workers"] = task.assignees.values_list(
+            "username",
+            flat=True
+        )
+        context["task_assignments"] = TaskAssignment.objects.filter(
+            task=self.object
+        )
         context["today"] = datetime.now()
 
         return context

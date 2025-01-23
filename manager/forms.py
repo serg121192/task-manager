@@ -124,7 +124,11 @@ class WorkerUpdateForm(UserChangeForm):
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
-        if Worker.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+        if Worker.objects.filter(
+                username=username
+        ).exclude(
+            pk=self.instance.pk
+        ).exists():
             raise forms.ValidationError("This username is already in use.")
         return username
 
@@ -145,6 +149,7 @@ class AssignTaskToWorkerForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
+
     class Meta:
         model = Worker
         fields = []
