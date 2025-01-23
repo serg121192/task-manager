@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div
+      class="d-flex justify-content-between align-items-center mb-2 w-100"
+  >
+    <h1 class="text-white">
+      About project "{{ project.name }}"
+    </h1>
+    <a
+        href="{% url 'manager:project-update' pk=project.id %}"
+        class="btn btn-success link-to-page"
+    >
+      Edit
+    </a>
+  </div>
+  <hr class="text-white">
+  {% if project.description %}
+    <h4 class="text-white">Description:</h4>
+    <p class="text-white">
+      {{ project.description }}
+    </p>
+  {% endif %}
+  <table class="table table-bordered text-start bg-white">
+    <thead>
+      <tr>
+        <th>Project Teams</th>
+        <th>Project Tasks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          {% if project.teams.all %}
+            <ol>
+              {% for team in project.teams.all %}
+                <li>
+                  <a
+                      href="{% url 'manager:team-detail' pk=team.id %}"
+                      class="text-decoration-none"
+                  >
+                    {{ team.name }}
+                  </a>
+                </li>
+              {% endfor %}
+            </ol>
+          {% else %}
+            <p>There are no assigned teams.</p>
+          {% endif %}
+        </td>
+        <td>
+          {% if project.tasks.all %}
+            <ol>
+              {% for task in project.tasks.all %}
+                <li>
+                  <a
+                      href="{% url 'manager:task-detail' pk=task.id %}"
+                      class="text-decoration-none"
+                  >
+                    {{ task.name }}
+                  </a>
+                </li>
+             {% endfor %}
+            </ol>
+          {% else %}
+            <p>There are no assigned tasks.</p>
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <hr class="text-white">
+  <a
+      href="{% url 'manager:project-delete' pk=project.id %}"
+      class="btn btn-danger"
+  >
+    Delete
+  </a>
+{% endblock %}

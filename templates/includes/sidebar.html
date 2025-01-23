@@ -1,0 +1,83 @@
+<ul class="sidebar-nav list-group">
+  {% if user.is_authenticated %}
+    <p class="text-white">
+      Hello, <strong class="text-primary">{{ user.username }}</strong>!
+    </p>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Logout" class="btn btn-danger">
+    </form>
+  {% else %}
+    <p class="text-white">
+      Hello, <strong class="text-primary">Unknown_user</strong>!
+    </p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+    <br>
+    <a href="{% url 'manager:signup-worker' %}" class="btn btn-info">Sign Up</a>
+  {% endif %}
+  <hr class="text-white">
+  <li class="list-group-item ">
+    <a
+        href="{% url 'index' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Home
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:project-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Projects
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:team-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Teams
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:worker-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Employees
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:position-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Positions
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:task-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Tasks
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:task-type-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Task types
+    </a>
+  </li>
+  <li class="list-group-item">
+    <a
+        href="{% url 'manager:tag-list' %}"
+        class="text-decoration-none text-black-50"
+    >
+      Tags
+    </a>
+  </li>
+</ul>

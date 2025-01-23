@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <div class="container-fluid text-white">
+    <h1>Task Detail</h1>
+    <hr class="text-white-50">
+    <p>
+      <strong>Task ID:</strong>
+      {{ taskassignment.task.id }}
+    </p>
+    <p>
+      <strong>Task name:</strong>
+      {{ taskassignment.task.name }}
+    </p>
+    <p>
+      <strong>Task type:</strong>
+      {{ taskassignment.task.task_type }}
+    </p>
+    <p>
+      <strong>Description:</strong>
+      {{ taskassignment.task.description }}
+    </p>
+    <p>
+      <strong>Task priority:</strong>
+      {{ taskassignment.task.priority }}
+    </p>
+    <p>
+      <strong>Deadline:</strong>
+      {{ taskassignment.task.deadline|date:"d M Y, H:i:s" }}
+      </p>
+      <hr class="text-white-50">
+      <form action="" method="post">
+        {% csrf_token %}
+        <input
+            type="submit"
+            value="Set as Done"
+            class="btn btn-success"
+        >
+      </form>
+  </div>
+{% endblock %}

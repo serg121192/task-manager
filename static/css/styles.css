@@ -1,0 +1,12 @@
+.sidebar-nav {
+    list-style: none;
+}
+
+.sidebar-nav a {
+    text-decoration: none;
+}
+
+.link-to-page {
+    float: right;
+    margin: 0;
+}
