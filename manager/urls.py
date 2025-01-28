@@ -58,12 +58,12 @@ urlpatterns = [
         name="project-create"
     ),
     path(
-        "projects/<int:pk>/update",
+        "projects/<int:pk>/update/",
         ProjectUpdateView.as_view(),
         name="project-update"
     ),
     path(
-        "projects/<int:pk>/delete",
+        "projects/<int:pk>/delete/",
         ProjectDeleteView.as_view(),
         name="project-delete"
     ),
@@ -83,12 +83,12 @@ urlpatterns = [
         name="team-create"
     ),
     path(
-        "teams/<int:pk>/update",
+        "teams/<int:pk>/update/",
         TeamUpdateView.as_view(),
         name="team-update"
     ),
     path(
-        "teams/<int:pk>/delete",
+        "teams/<int:pk>/delete/",
         TeamDeleteView.as_view(),
         name="team-delete"
     ),
@@ -108,12 +108,12 @@ urlpatterns = [
         name="position-create"
     ),
     path(
-        "positions/<int:pk>/update",
+        "positions/<int:pk>/update/",
         PositionUpdateView.as_view(),
         name="position-update"
     ),
     path(
-        "positions/<int:pk>/delete",
+        "positions/<int:pk>/delete/",
         PositionDeleteView.as_view(),
         name="position-delete"
     ),
@@ -133,7 +133,7 @@ urlpatterns = [
         name="worker-create"
     ),
     path(
-        "workers/<int:pk>/update",
+        "workers/<int:pk>/update/",
         WorkerUpdateView.as_view(),
         name="worker-update"
     ),
@@ -143,7 +143,7 @@ urlpatterns = [
         name="worker-change-password"
     ),
     path(
-        "workers/<int:pk>/delete",
+        "workers/<int:pk>/delete/",
         WorkerDeleteView.as_view(),
         name="worker-delete"
     ),
@@ -178,17 +178,17 @@ urlpatterns = [
         name="task-create"
     ),
     path(
-        "tasks/<int:pk>/update",
+        "tasks/<int:pk>/update/",
         TaskUpdateView.as_view(),
         name="task-update"
     ),
     path(
-        "tasks/<int:pk>/delete",
+        "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete"
     ),
     path(
-        "tasks/<int:pk>/assign_worker",
+        "tasks/<int:pk>/assign_worker/",
         AssignWorkersToTaskView.as_view(),
         name="assign-workers-task"
     ),
@@ -203,12 +203,12 @@ urlpatterns = [
         name="task-type-create"
     ),
     path(
-        "task_types/<int:pk>/update",
+        "task_types/<int:pk>/update/",
         TaskTypeUpdateView.as_view(),
         name="task-type-update"
     ),
     path(
-        "task_types/<int:pk>/delete",
+        "task_types/<int:pk>/delete/",
         TaskTypeDeleteView.as_view(),
         name="task-type-delete"
     ),
@@ -223,12 +223,12 @@ urlpatterns = [
         name="tag-create"
     ),
     path(
-        "tags/<int:pk>/update",
+        "tags/<int:pk>/update/",
         TagUpdateView.as_view(),
         name="tag-update"
     ),
     path(
-        "tags/<int:pk>/delete",
+        "tags/<int:pk>/delete/",
         TagDeleteView.as_view(),
         name="tag-delete"
     ),
