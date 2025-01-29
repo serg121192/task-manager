@@ -3,7 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from task_manager import settings
+from task_manager.settings.base import *
 
 
 class TaskType(models.Model):
@@ -110,7 +110,7 @@ class Task(models.Model):
         related_name="tasks"
     )
     assignees = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
+        AUTH_USER_MODEL,
         through="TaskAssignment",
         related_name="tasks",
     )
@@ -140,7 +140,7 @@ class TaskAssignment(models.Model):
         related_name="assignments"
     )
     worker = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="assignments"
     )
@@ -190,7 +190,7 @@ class Team(models.Model):
     name = models.CharField(max_length=100, null=False, blank=False)
     description = models.TextField()
     workers = models.ManyToManyField(
-        settings.AUTH_USER_MODEL,
+        AUTH_USER_MODEL,
         related_name="teams",
         blank=False
     )

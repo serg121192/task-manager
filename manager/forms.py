@@ -208,11 +208,7 @@ class TaskCreateUpdateForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False,
     )
-    teams = forms.ModelMultipleChoiceField(
-        queryset=Team.objects.prefetch_related("tasks"),
-        widget=forms.CheckboxSelectMultiple,
-        required=False,
-    )
+
     tags = forms.ModelMultipleChoiceField(
         queryset=Tag.objects.prefetch_related("tasks"),
         widget=forms.CheckboxSelectMultiple,

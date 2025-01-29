@@ -1,0 +1,687 @@
+[
+{
+    "model": "manager.tasktype",
+    "pk": 1,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "manager.tasktype",
+    "pk": 2,
+    "fields": {
+        "name": "Refactoring"
+    }
+},
+{
+    "model": "manager.tasktype",
+    "pk": 3,
+    "fields": {
+        "name": "Bug"
+    }
+},
+{
+    "model": "manager.tasktype",
+    "pk": 4,
+    "fields": {
+        "name": "New feature"
+    }
+},
+{
+    "model": "manager.tasktype",
+    "pk": 5,
+    "fields": {
+        "name": "Breaking change"
+    }
+},
+{
+    "model": "manager.tasktype",
+    "pk": 6,
+    "fields": {
+        "name": "Visual"
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$s88EllAJDWdTJc5ULCsJj3$2mfVb24JJ3u/lOYLAmo+LGczYENOUQqmy5QAjaKyVYg=",
+        "last_login": "2025-01-28T13:41:27.345Z",
+        "is_superuser": false,
+        "username": "test_user",
+        "first_name": "Test",
+        "last_name": "User",
+        "email": "test_user@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:41:18.674Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$4OLOo2wloSBfAR0cOmR6Ug$d75ihn1i5aCAW2L0YSvXD6WE8IuPyrMm0NA7Vj2TvVA=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "user",
+        "first_name": "User",
+        "last_name": "User",
+        "email": "user@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:50:19.237Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$fg53Y7W9ZbbEVmT8Du0pxt$bTNOCnMRM7a/B1YQIiQdNvzKXd1tSp3qLXja0pcb+7g=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_manager_1",
+        "first_name": "Test",
+        "last_name": "Manager",
+        "email": "test_manager_1@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:51:04.252Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$159TobWSxPurcPH3yhKsnc$w3w7FkZUU9iDjIukrhQBar9/Zf6VJs2DBfIYtkntL5k=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_manager_2",
+        "first_name": "Test",
+        "last_name": "Manager",
+        "email": "test_manager_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:51:40.406Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$F6Dev7EzzSZWqH1CqlCwkV$qeOHM0oLNnAIxLmrGroujFZs91+OL5XT37za8bwOXBY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_manager_3",
+        "first_name": "Test",
+        "last_name": "Manager",
+        "email": "test_manager_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:52:16.350Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$odDR5FpZlGzpEQIIkQvwst$T8PU40O0+uqpA0bvROf9rvHImjCIslkFpbwfoLvml/g=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_developer",
+        "first_name": "Test",
+        "last_name": "Developer",
+        "email": "test_dev@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:53:02.851Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Fub3MpzL9aHEzqhCIFfzPt$ZXnBY7e7sc390OAjB5e6FFKGXYCXBopk8ePlQn6ihrc=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_developer_2",
+        "first_name": "Test",
+        "last_name": "Developer",
+        "email": "test_dev_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:53:39.487Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$EVJNWlMRsmHHdQvQN4HdEB$Z2mBcJhO++XPJFSsr+TXTCSOSy+PqXWvdbx7onN42nE=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_developer_3",
+        "first_name": "Test",
+        "last_name": "Developer",
+        "email": "test_dev_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T13:56:10.046Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$56gRFGgV1QdQRR7kwHnCoQ$w48DV4S0FtBhjguqPLMQCiMPqKVk5HmzYoU0pODm4hM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_deigner",
+        "first_name": "Test",
+        "last_name": "Designer",
+        "email": "test_design@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:32:12.072Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$QdVPJjXJYf49loCdmGdpIA$I4PEEzueKBZqCi2FqOhssZJw4jRR89K3sPijgfG35ZQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_deisigner_2",
+        "first_name": "Test",
+        "last_name": "Designer",
+        "email": "test_design_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:32:49.461Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 11,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$Kx7GM3LOVAo0llv6WewLHw$682Lmq8ib0qVYBiuD9dnDx1YtJI6PFntcqN/J+2yOIo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_designer_3",
+        "first_name": "Test",
+        "last_name": "Designer",
+        "email": "test_design_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:33:24.875Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 12,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$EQx58Qa8jhcxIvrpNeSSSI$EyNa63BdqNblv43wjaA963sZBvdeEW9vPqn9k7sEtRo=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_devops",
+        "first_name": "Test",
+        "last_name": "Devops",
+        "email": "test_devops@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:33:58.909Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 13,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$fMLAs8DJg7R2wm21Zpigs2$VIlsA/+ynqpbpjqXX5hvEc+SpEYOCQ2ckEl4hAccjUk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_devops_2",
+        "first_name": "Test",
+        "last_name": "Devops",
+        "email": "test_devops_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:34:35.252Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 14,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$R7CwE36KK54CU1GzZpGrku$PkwYP0ycvlZN/oIlZKRxJ6VQXRrDVKMaC19mG8dL/sk=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_devops_3",
+        "first_name": "Test",
+        "last_name": "Devops",
+        "email": "test_devops_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:35:21.435Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 15,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$1ZDw6YJ1Y2SfXCNUECiW4V$0c6pJbvdHfbpMkaBcUMpJjEcibgGokqt6JZjj39e5CU=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_qa",
+        "first_name": "Test",
+        "last_name": "Qa",
+        "email": "test_qa@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:35:55.427Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 16,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$tny9NuZgpVPfdVhLyJLHxC$zBM4ldGgITb7wZVvHHfF4hiUdSpQ9nFbFtRx3abKHxQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_qa_2",
+        "first_name": "Test",
+        "last_name": "Qa",
+        "email": "test_qa_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:36:22.113Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 17,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$W86Dq7e8EIbbs6eCQvAbGa$Pr59vRv1jVsadcFLGZXmguOjT5zOzCdDNqqvqoywTLY=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_qa_3",
+        "first_name": "Test",
+        "last_name": "Qa",
+        "email": "test_qa_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:36:55.238Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 18,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$PKNpPOr2YUqOu5I5QGhTbv$P6/T3yFNOO3TiXqrv+yorzS8QFvqaTDrCfHr2rC7id8=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_content",
+        "first_name": "Test",
+        "last_name": "Content",
+        "email": "test_cont@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:37:40.350Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 19,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$DUyBkNnGtzeUUKxgicLWKE$+SFonBl9ccm4an5nHAPYX890nSRQupOf8zHlkDBN1w0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_content_2",
+        "first_name": "Test",
+        "last_name": "Content",
+        "email": "test_cont_2@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:38:18.235Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.worker",
+    "pk": 20,
+    "fields": {
+        "password": "pbkdf2_sha256$870000$AxuWSUDf4Lh9xpvAmS0vZM$T8fI7bpWQpFGz4ty8XKito+nngCmvNqCSbv7Wc/uEg0=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "test_content_3",
+        "first_name": "Test",
+        "last_name": "Content",
+        "email": "test_cont_3@task.manager.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2025-01-28T15:38:48.968Z",
+        "position": null,
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 1,
+    "fields": {
+        "name": "Project Manager"
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 2,
+    "fields": {
+        "name": "Developer"
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 3,
+    "fields": {
+        "name": "QA"
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 4,
+    "fields": {
+        "name": "Designer"
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 5,
+    "fields": {
+        "name": "DevOps"
+    }
+},
+{
+    "model": "manager.position",
+    "pk": 6,
+    "fields": {
+        "name": "Content Manager"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 1,
+    "fields": {
+        "name": "python-refactoring"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 2,
+    "fields": {
+        "name": "content"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 3,
+    "fields": {
+        "name": "webpage-layout"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 4,
+    "fields": {
+        "name": "qa-bug"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 5,
+    "fields": {
+        "name": "new-feature"
+    }
+},
+{
+    "model": "manager.tag",
+    "pk": 6,
+    "fields": {
+        "name": "management"
+    }
+},
+{
+    "model": "manager.task",
+    "pk": 1,
+    "fields": {
+        "name": "Task #1",
+        "description": "Test task # 1",
+        "deadline": "2025-01-30T22:00:00Z",
+        "is_completed": false,
+        "priority": "Low",
+        "task_type": 3,
+        "tags": []
+    }
+},
+{
+    "model": "manager.task",
+    "pk": 2,
+    "fields": {
+        "name": "Task #2",
+        "description": "Test task #2",
+        "deadline": "2025-01-19T22:00:00Z",
+        "is_completed": false,
+        "priority": "High",
+        "task_type": 5,
+        "tags": []
+    }
+},
+{
+    "model": "manager.task",
+    "pk": 3,
+    "fields": {
+        "name": "Task #3",
+        "description": "Test task #3",
+        "deadline": "2025-01-28T22:00:00Z",
+        "is_completed": false,
+        "priority": "Medium",
+        "task_type": 4,
+        "tags": []
+    }
+},
+{
+    "model": "manager.task",
+    "pk": 4,
+    "fields": {
+        "name": "Task #4",
+        "description": "Test task #4",
+        "deadline": "2025-01-30T22:00:00Z",
+        "is_completed": false,
+        "priority": "Urgent",
+        "task_type": 2,
+        "tags": []
+    }
+},
+{
+    "model": "manager.task",
+    "pk": 5,
+    "fields": {
+        "name": "Task #5",
+        "description": "Test task #5",
+        "deadline": "2025-01-18T22:00:00Z",
+        "is_completed": false,
+        "priority": "Urgent",
+        "task_type": 2,
+        "tags": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 1,
+    "fields": {
+        "name": "Test project #1",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 2,
+    "fields": {
+        "name": "Test project #2",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 3,
+    "fields": {
+        "name": "Test project #3",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 4,
+    "fields": {
+        "name": "Test project #4",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 5,
+    "fields": {
+        "name": "Test project #5",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.project",
+    "pk": 6,
+    "fields": {
+        "name": "Test project #6",
+        "description": "",
+        "teams": [],
+        "tasks": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 1,
+    "fields": {
+        "name": "Test team #1",
+        "description": "",
+        "workers": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 2,
+    "fields": {
+        "name": "Test team # 2",
+        "description": "",
+        "workers": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 3,
+    "fields": {
+        "name": "Test team #3",
+        "description": "",
+        "workers": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 4,
+    "fields": {
+        "name": "Test team #4",
+        "description": "",
+        "workers": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 5,
+    "fields": {
+        "name": "Test team #5",
+        "description": "",
+        "workers": []
+    }
+},
+{
+    "model": "manager.team",
+    "pk": 6,
+    "fields": {
+        "name": "Test team #6",
+        "description": "",
+        "workers": []
+    }
+}
+]
