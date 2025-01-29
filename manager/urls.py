@@ -1,4 +1,6 @@
+from django.conf.urls.static import static
 from django.urls import path
+from django.views.generic import RedirectView
 
 from manager.views import (
     index,
@@ -41,6 +43,7 @@ from manager.views import (
     AssignTaskToWorkerView,
     WorkerTaskCompletionView,
 )
+from task_manager.settings.base import *
 
 
 urlpatterns = [
@@ -232,7 +235,8 @@ urlpatterns = [
         TagDeleteView.as_view(),
         name="tag-delete"
     ),
-]
+    path("favicon.ico", RedirectView.as_view(url="/static/favicon.ico")),
+] + static(STATIC_URL, document_root=STATIC_ROOT)
 
 
 app_name = "manager"

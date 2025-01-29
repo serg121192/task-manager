@@ -37,7 +37,9 @@
           {% endfor %}
         </ol>
       {% else %}
-        There are no represented {{ position.name }}s in Company!
+        <p class="text-white">
+          There are no represented {{ position.name }}s in Company!
+        </p>
       {% endif %}
     {% else %}
         <h4>Our Company {{ position.name }}:</h4>

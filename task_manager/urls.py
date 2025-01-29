@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from manager.views import index
-from task_manager import settings
+from task_manager.settings.base import *
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +28,4 @@ urlpatterns = [
     path("manager/", include("manager.urls")),
     path("__debug__/", include(debug_toolbar.urls)),
     path("accounts/", include("django.contrib.auth.urls")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(STATIC_URL, document_root=STATIC_ROOT)

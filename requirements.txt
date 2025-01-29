@@ -16,6 +16,7 @@ mccabe==0.7.0
 packaging==24.2
 pep8-naming==0.13.2
 pluggy==1.5.0
+psycopg2-binary==2.9.10
 pycodestyle==2.12.1
 pydantic==2.10.4
 pydantic-settings==2.7.1
@@ -28,3 +29,4 @@ sqlparse==0.5.3
 tomli==2.2.1
 typing_extensions==4.12.2
 tzdata==2024.2
+whitenoise==6.8.2
